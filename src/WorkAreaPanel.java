@@ -13,7 +13,7 @@ public class WorkAreaPanel extends JPanel implements MouseListener, MouseMotionL
     boolean isClickedOut =false;
     public WorkAreaPanel(){
         setPreferredSize(new Dimension(800, getHeight()));
-        setBackground(Color.GRAY);
+//        setBackground(Color.GRAY);
         addMouseListener(this);
         addMouseMotionListener(this);
     }
@@ -21,6 +21,13 @@ public class WorkAreaPanel extends JPanel implements MouseListener, MouseMotionL
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
+        int panelWidth = getWidth();
+        int sectionWidth = panelWidth / 3;
+        g.setColor(Color.WHITE);
+        g.fillRect(0, 0, sectionWidth*2, getHeight());
+        g.setColor(Color.LIGHT_GRAY);
+        g.fillRect(sectionWidth*2, 0 , sectionWidth, getHeight());
+
         ball.draw(g);
         trashCan.draw(g);
     }
