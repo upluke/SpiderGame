@@ -16,11 +16,14 @@ public class ProblemHelper {
     }
 
     public void load(String level) {
+        DataSource ds = DataSource.getInstance();
         try(BufferedReader reader = new BufferedReader(new FileReader("levels/"+level+".txt"))){
             String gridDataStr = reader.readLine();
             String[] gridDataArr = gridDataStr.split(", ");
+
+
             String blockDataString = reader.readLine();
-            String[] spawnBlockArr = blockDataString.split(", ");
+            // String[] spawnBlockArr = blockDataString.split(", ");
 
             int id = 0;
             HashMap<Character, Color> colorMap  =new HashMap<>();
@@ -43,7 +46,11 @@ public class ProblemHelper {
                 boolean hasSpider=currCellData.contains("n")|| currCellData.contains("s") || currCellData.contains("w")|| currCellData.contains("e");
                 char spiderDirection=spiderDirectionMap.getOrDefault(currCellData.charAt(1), 'n');
 
-
+                // initialize spider's position and direction in DataSource
+                if(hasSpider){
+                    ds.setSpiderCurrPosition(i);
+                    ds.setSpiderCurrDirection(spiderDirection);
+                }
                 Cell cell = new Cell(hasDiamond,hasSpider, color,spiderDirection, id);
 
                 problem.add(cell);

@@ -18,9 +18,6 @@ public class Spider {
         this.y =y;
     }
 
-    public void setDirection(String direction){
-        this.direction= direction;
-    }
 
     public int getX(){
         return this.x;
@@ -35,7 +32,20 @@ public class Spider {
         return this.direction;
     }
 
+    public void setDirection(String direction){
+        this.direction= direction;
+    }
+
+    public void move(){
+
+    }
+    public void paintCell(){
+
+    }
+
     public void draw(Graphics g){
+        // TODO: change spider's UI according to the directions
+
         g.setColor(Color.WHITE);
         g.fillOval( x+20, y+20, BODY_SIZE, BODY_SIZE);
         g.fillOval(x+30, y+10, BODY_SIZE/2, BODY_SIZE/2);
