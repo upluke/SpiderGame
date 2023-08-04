@@ -6,7 +6,7 @@ public class DataSource {
     private static DataSource _instance;
     private LinkedList<Cell> cells;
     private int spiderCurrPosition;
-    private char spiderCurrDirection;
+
     private LinkedList<String> operations = new LinkedList<>(Arrays.asList("move", "turn", "paintBlue"));
     private DataSource(){
 
@@ -38,13 +38,6 @@ public class DataSource {
         this.spiderCurrPosition=position;
     }
 
-    public char getSpiderCurrDirection(){
-        return spiderCurrDirection;
-    }
-
-    public void setSpiderCurrDirection(char direction){
-        this.spiderCurrDirection =direction;
-    }
     public void setOperations(){
         // TODO: takes blocks and update operations with blocks' info
     }

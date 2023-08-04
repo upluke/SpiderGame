@@ -3,6 +3,7 @@ import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.LinkedList;
 
 public class WorldPanel extends JPanel implements ActionListener {
     private World world;
@@ -28,11 +29,37 @@ public class WorldPanel extends JPanel implements ActionListener {
         setBackground(Color.white);
 
     }
+
+
+    public void updateCellsWithOperationsData(){
+        DataSource ds = DataSource.getInstance();
+        LinkedList<String> operations =  ds.getOperations();
+        LinkedList<Cell> cells= ds.getCells();
+        Spider spider = new Spider();
+        int spiderCurrPosition = ds.getSpiderCurrPosition();
+
+        for (String o: operations){
+            // TODO: handle different directions and check the boundaries
+            if(o=="move") {
+                Cell cell = cells.get(spiderCurrPosition);
+                cell.setHasSpider(false);
+                char spiderDirection = cell.getSpiderDirection();
+                if(spiderDirection =='n'){
+
+                    Cell cellSpiderWillMoveTo = cells.get(spiderCurrPosition-5);
+                    cellSpiderWillMoveTo.setHasSpider(true);
+                    repaint();
+                }
+            }
+        }
+    }
+
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getActionCommand().equals("Play")){
             System.out.println("Clicked play");
-            world.updateCellsWithOperationsData();
+            updateCellsWithOperationsData();
         }else{
             System.out.println("Clicked reset");
         }

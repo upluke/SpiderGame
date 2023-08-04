@@ -17,32 +17,6 @@ public class World {
         }
     }
 
-    public void updateCellsWithOperationsData(){
-        DataSource ds = DataSource.getInstance();
-        LinkedList<String> operations =  ds.getOperations();
-        LinkedList<Cell> cells= ds.getCells();
-        Spider spider = new Spider();
-        int spiderCurrPosition = ds.getSpiderCurrPosition();
-        char spiderCurrDirection = ds.getSpiderCurrDirection();
-
-        System.out.println(spiderCurrDirection + "****" + spiderCurrPosition);
-//        for(Cell c : cells){
-//            if(c.hasSpider()){
-//                int x = spider.getX();
-//                int y = spider.getY();
-//                System.out.println(x + " ---- " + y);
-//                System.out.println(ds.getSpiderCurrPosition());
-//            }
-//
-//        }
-        for (String o: operations){
-            switch (o){
-                case "move":
-
-            }
-        }
-    }
-
 
 
 

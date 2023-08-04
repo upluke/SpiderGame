@@ -5,17 +5,17 @@ public class Cell {
     private boolean hasSpider;
     private int id;
     private Color color;
-    private double spiderDirection;
+    private char spiderDirection;
     private Spider spider;
 
     private int x;
     private int y;
 
-    public Cell (boolean diamond, boolean hasSpider, Color color, double spiderDirection, int id){
+    public Cell (boolean diamond, boolean hasSpider, Color color, char spiderDirection, int id){
         this.hasDiamond = diamond;
         this.hasSpider = hasSpider;
         this.color = color;
-        this.spiderDirection= hasSpider? spiderDirection: Double.NaN; // check: Double.isNaN(x)
+        this.spiderDirection = hasSpider ? spiderDirection : ' ';
         this.id=id;
     }
 
@@ -30,6 +30,9 @@ public class Cell {
         return hasSpider;
     }
 
+    public void setHasSpider(boolean hasSpider){
+        this.hasSpider=hasSpider;
+    }
     public Color getColor(){
         return color;
     }
@@ -42,6 +45,11 @@ public class Cell {
         this.x=x;
         this.y=y;
     }
+
+    public char getSpiderDirection(){
+        return this.spiderDirection;
+    }
+
 
     public void draw(Graphics g){
         spider=new Spider();
