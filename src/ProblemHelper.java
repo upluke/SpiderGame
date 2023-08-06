@@ -22,7 +22,7 @@ public class ProblemHelper {
             String[] gridDataArr = gridDataStr.split(", ");
 
 
-            String blockDataString = reader.readLine();
+            // String blockDataString = reader.readLine();
             // String[] spawnBlockArr = blockDataString.split(", ");
 
             int id = 0;

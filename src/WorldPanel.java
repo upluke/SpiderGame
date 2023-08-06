@@ -38,15 +38,32 @@ public class WorldPanel extends JPanel implements ActionListener {
         Spider spider = new Spider();
         int spiderCurrPosition = ds.getSpiderCurrPosition();
 
+        // calculate left boundary and right boundary
+        int leftBoundary =(spiderCurrPosition/5) *(int) Math.sqrt(cells.size()); // leftBoundary <= position
+        int rightBoundary = leftBoundary+5; // rightBoundary > position
+
         for (String o: operations){
-            // TODO: handle different directions and check the boundaries
+            // TODO: 1. check the boundaries 2. modulize main conditional function
             if(o=="move") {
                 Cell cell = cells.get(spiderCurrPosition);
                 cell.setHasSpider(false);
                 char spiderDirection = cell.getSpiderDirection();
-                if(spiderDirection =='n'){
+                if(spiderDirection =='n' && spiderDirection-5>=0){
+                    Cell cellSpiderWillMoveTo = cells.get(spiderCurrPosition - 5);
+                    cellSpiderWillMoveTo.setHasSpider(true);
+                    repaint();
 
-                    Cell cellSpiderWillMoveTo = cells.get(spiderCurrPosition-5);
+                }else if(spiderDirection =='s' && spiderDirection+5<cells.size()){
+                    Cell cellSpiderWillMoveTO = cells.get(spiderCurrPosition+5);
+                    cellSpiderWillMoveTO.setHasSpider(true);
+                    repaint();
+                }else if(spiderDirection =='w' && spiderDirection-5<4){
+
+                    Cell cellSpiderWillMoveTo = cells.get(spiderCurrPosition-1);
+                    cellSpiderWillMoveTo.setHasSpider(true);
+                    repaint();
+                }else{
+                    Cell cellSpiderWillMoveTo = cells.get(spiderCurrPosition+1);
                     cellSpiderWillMoveTo.setHasSpider(true);
                     repaint();
                 }
