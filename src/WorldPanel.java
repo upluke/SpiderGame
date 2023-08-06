@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.LinkedList;
+import java.util.Timer;
 
 public class WorldPanel extends JPanel implements ActionListener {
     private World world;
@@ -36,37 +37,52 @@ public class WorldPanel extends JPanel implements ActionListener {
         LinkedList<String> operations =  ds.getOperations();
         LinkedList<Cell> cells= ds.getCells();
         Spider spider = new Spider();
-        int spiderCurrPosition = ds.getSpiderCurrPosition();
 
-        // calculate left boundary and right boundary
-        int leftBoundary =(spiderCurrPosition/5) *(int) Math.sqrt(cells.size()); // leftBoundary <= position
-        int rightBoundary = leftBoundary+5; // rightBoundary > position
 
         for (String o: operations){
-            // TODO: 1. check the boundaries 2. modulize main conditional function
+            int spiderCurrPosition = ds.getSpiderCurrPosition();
+
+            // calculate left boundary and right boundary
+            int leftBoundary =(spiderCurrPosition/5) *(int) Math.sqrt(cells.size()); // leftBoundary <= position
+            int rightBoundary = leftBoundary+5; // rightBoundary > position
+            // TODO: 1. set and test n s w 2. modulize main conditional function
             if(o=="move") {
-                Cell cell = cells.get(spiderCurrPosition);
-                cell.setHasSpider(false);
-                char spiderDirection = cell.getSpiderDirection();
-                if(spiderDirection =='n' && spiderDirection-5>=0){
+                System.out.println("in in ");
+                Cell currCell = cells.get(spiderCurrPosition);
+                currCell.setHasSpider(false);
+                char spiderDirection = currCell.getSpiderDirection();
+                System.out.println(spiderDirection + " - " + spiderCurrPosition);
+
+
+                if(spiderDirection =='n' && spiderCurrPosition-5>=0){
+                    System.out.println("in nnnnnn");
                     Cell cellSpiderWillMoveTo = cells.get(spiderCurrPosition - 5);
                     cellSpiderWillMoveTo.setHasSpider(true);
-                    repaint();
 
-                }else if(spiderDirection =='s' && spiderDirection+5<cells.size()){
+                }else if(spiderDirection =='s' && spiderCurrPosition+5<cells.size()){
+                    System.out.println("in ssssss");
                     Cell cellSpiderWillMoveTO = cells.get(spiderCurrPosition+5);
                     cellSpiderWillMoveTO.setHasSpider(true);
-                    repaint();
-                }else if(spiderDirection =='w' && spiderDirection-5<4){
 
+                }else if(spiderDirection =='w' && spiderCurrPosition-1>=leftBoundary){
+                    System.out.println("in wwwwww");
                     Cell cellSpiderWillMoveTo = cells.get(spiderCurrPosition-1);
                     cellSpiderWillMoveTo.setHasSpider(true);
-                    repaint();
-                }else{
+
+                }else if(spiderDirection == 'e' && (spiderCurrPosition +1) < rightBoundary){
+                    System.out.println("in eeeeee");
                     Cell cellSpiderWillMoveTo = cells.get(spiderCurrPosition+1);
                     cellSpiderWillMoveTo.setHasSpider(true);
-                    repaint();
+                    ds.setSpiderCurrPosition(spiderCurrPosition+1);
+                    cellSpiderWillMoveTo.setSpiderDirection('e');
+
+                }else{
+                    System.out.println("here?");
+                    currCell.setHasSpider(true);
                 }
+                System.out.println();
+                repaint();
+
             }
         }
     }

@@ -50,6 +50,9 @@ public class Cell {
         return this.spiderDirection;
     }
 
+    public void setSpiderDirection(char direction){
+        this.spiderDirection = direction;
+    }
 
     public void draw(Graphics g){
         spider=new Spider();
