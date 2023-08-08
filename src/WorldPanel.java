@@ -45,7 +45,7 @@ public class WorldPanel extends JPanel implements ActionListener {
             // calculate left boundary and right boundary
             int leftBoundary =(spiderCurrPosition/5) *(int) Math.sqrt(cells.size()); // leftBoundary <= position
             int rightBoundary = leftBoundary+5; // rightBoundary > position
-            // TODO: 1. set and test n s w 2. modulize main conditional function
+            // TODO: 1. set and test n s  2. modulize main conditional function
             if(o=="move") {
                 System.out.println("in in ");
                 Cell currCell = cells.get(spiderCurrPosition);
@@ -64,10 +64,12 @@ public class WorldPanel extends JPanel implements ActionListener {
                     Cell cellSpiderWillMoveTO = cells.get(spiderCurrPosition+5);
                     cellSpiderWillMoveTO.setHasSpider(true);
 
-                }else if(spiderDirection =='w' && spiderCurrPosition-1>=leftBoundary){
+                }else if(spiderDirection =='w' && (spiderCurrPosition-1) >=leftBoundary){
                     System.out.println("in wwwwww");
                     Cell cellSpiderWillMoveTo = cells.get(spiderCurrPosition-1);
                     cellSpiderWillMoveTo.setHasSpider(true);
+                    ds.setSpiderCurrPosition(spiderCurrPosition-1);
+                    cellSpiderWillMoveTo.setSpiderDirection('w');
 
                 }else if(spiderDirection == 'e' && (spiderCurrPosition +1) < rightBoundary){
                     System.out.println("in eeeeee");
