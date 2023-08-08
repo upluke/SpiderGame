@@ -7,7 +7,7 @@ public class DataSource {
     private LinkedList<Cell> cells;
     private int spiderCurrPosition;
 
-    private LinkedList<String> operations = new LinkedList<>(Arrays.asList("move", "move", "move", "move","turn", "paintBlue"));
+    private LinkedList<String> operations = new LinkedList<>(Arrays.asList("move", "move","turn", "paintBlue"));
     private DataSource(){
 
         cells = new LinkedList<>();

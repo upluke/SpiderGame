@@ -58,11 +58,15 @@ public class WorldPanel extends JPanel implements ActionListener {
                     System.out.println("in nnnnnn");
                     Cell cellSpiderWillMoveTo = cells.get(spiderCurrPosition - 5);
                     cellSpiderWillMoveTo.setHasSpider(true);
+                    ds.setSpiderCurrPosition(spiderCurrPosition-5);
+                    cellSpiderWillMoveTo.setSpiderDirection('n');
 
                 }else if(spiderDirection =='s' && spiderCurrPosition+5<cells.size()){
                     System.out.println("in ssssss");
                     Cell cellSpiderWillMoveTO = cells.get(spiderCurrPosition+5);
                     cellSpiderWillMoveTO.setHasSpider(true);
+                    ds.setSpiderCurrPosition(spiderCurrPosition+5);
+                    cellSpiderWillMoveTO.setSpiderDirection('s');
 
                 }else if(spiderDirection =='w' && (spiderCurrPosition-1) >=leftBoundary){
                     System.out.println("in wwwwww");
