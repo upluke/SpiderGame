@@ -4,15 +4,21 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.LinkedList;
-import java.util.Timer;
+
 
 public class WorldPanel extends JPanel implements ActionListener {
     private World world;
+    ProblemHelper problemHelper;
+    DataSource ds = DataSource.getInstance();
+
 
     public WorldPanel(){
-        ProblemHelper problemHelper=new ProblemHelper();
+
+
+        problemHelper =new ProblemHelper();
         problemHelper.load("1");
         world = new World();
+
 
         setLayout(new BorderLayout());
         JPanel btnPanel = new JPanel();
@@ -33,11 +39,9 @@ public class WorldPanel extends JPanel implements ActionListener {
 
 
     public void updateCellsWithOperationsData(){
-        DataSource ds = DataSource.getInstance();
         LinkedList<String> operations =  ds.getOperations();
         LinkedList<Cell> cells= ds.getCells();
         Spider spider = new Spider();
-
 
         for (String o: operations){
             int spiderCurrPosition = ds.getSpiderCurrPosition();
@@ -45,6 +49,7 @@ public class WorldPanel extends JPanel implements ActionListener {
             // calculate left boundary and right boundary
             int leftBoundary =(spiderCurrPosition/5) *(int) Math.sqrt(cells.size()); // leftBoundary <= position
             int rightBoundary = leftBoundary+5; // rightBoundary > position
+
             // TODO: 1. set and test n s  2. modulize main conditional function
             if(o=="move") {
                 System.out.println("in in ");
@@ -61,12 +66,14 @@ public class WorldPanel extends JPanel implements ActionListener {
                     ds.setSpiderCurrPosition(spiderCurrPosition-5);
                     cellSpiderWillMoveTo.setSpiderDirection('n');
 
+
                 }else if(spiderDirection =='s' && spiderCurrPosition+5<cells.size()){
                     System.out.println("in ssssss");
                     Cell cellSpiderWillMoveTO = cells.get(spiderCurrPosition+5);
                     cellSpiderWillMoveTO.setHasSpider(true);
                     ds.setSpiderCurrPosition(spiderCurrPosition+5);
                     cellSpiderWillMoveTO.setSpiderDirection('s');
+
 
                 }else if(spiderDirection =='w' && (spiderCurrPosition-1) >=leftBoundary){
                     System.out.println("in wwwwww");
@@ -75,6 +82,7 @@ public class WorldPanel extends JPanel implements ActionListener {
                     ds.setSpiderCurrPosition(spiderCurrPosition-1);
                     cellSpiderWillMoveTo.setSpiderDirection('w');
 
+
                 }else if(spiderDirection == 'e' && (spiderCurrPosition +1) < rightBoundary){
                     System.out.println("in eeeeee");
                     Cell cellSpiderWillMoveTo = cells.get(spiderCurrPosition+1);
@@ -82,11 +90,13 @@ public class WorldPanel extends JPanel implements ActionListener {
                     ds.setSpiderCurrPosition(spiderCurrPosition+1);
                     cellSpiderWillMoveTo.setSpiderDirection('e');
 
+
                 }else{
                     System.out.println("here?");
                     currCell.setHasSpider(true);
                 }
                 System.out.println();
+
                 repaint();
 
             }
@@ -101,6 +111,9 @@ public class WorldPanel extends JPanel implements ActionListener {
             updateCellsWithOperationsData();
         }else{
             System.out.println("Clicked reset");
+            ds.resetCells();
+            problemHelper.load("1");
+            repaint();
         }
     }
 

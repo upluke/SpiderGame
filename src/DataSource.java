@@ -29,6 +29,10 @@ public class DataSource {
         return cells;
     }
 
+    public void resetCells(){
+        this.cells.clear();
+    }
+
     public int getSpiderCurrPosition(){
         return spiderCurrPosition;
     }

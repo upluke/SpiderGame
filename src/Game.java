@@ -18,6 +18,10 @@ public class Game extends JFrame {
       add(worldPanel, BorderLayout.CENTER);
       add(workAreaPanel, BorderLayout.EAST);
 
+
+
+
+
     }
 
     public static void main(String[] args){
