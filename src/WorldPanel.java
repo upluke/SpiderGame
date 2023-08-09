@@ -11,10 +11,10 @@ public class WorldPanel extends JPanel implements ActionListener {
     ProblemHelper problemHelper;
     DataSource ds = DataSource.getInstance();
 
-
+//    private Timer spiderMoveTimer;
     public WorldPanel(){
 
-
+//        spiderMoveTimer = new Timer(2000, this); // 1000ms delay (1 second)
         problemHelper =new ProblemHelper();
         problemHelper.load("1");
         world = new World();
@@ -39,18 +39,22 @@ public class WorldPanel extends JPanel implements ActionListener {
 
 
     public void updateCellsWithOperationsData(){
+
         LinkedList<String> operations =  ds.getOperations();
         LinkedList<Cell> cells= ds.getCells();
         Spider spider = new Spider();
-
+//        spiderMoveTimer.setInitialDelay(0);
+//        spiderMoveTimer.start();
         for (String o: operations){
+            //                spiderMoveTimer.stop();
+
             int spiderCurrPosition = ds.getSpiderCurrPosition();
 
             // calculate left boundary and right boundary
             int leftBoundary =(spiderCurrPosition/5) *(int) Math.sqrt(cells.size()); // leftBoundary <= position
             int rightBoundary = leftBoundary+5; // rightBoundary > position
 
-            // TODO: 1. set and test n s  2. modulize main conditional function
+            // TODO: 1. set and test n s  2. modulize main conditional function 3. handle other operations
             if(o=="move") {
                 System.out.println("in in ");
                 Cell currCell = cells.get(spiderCurrPosition);
@@ -96,10 +100,15 @@ public class WorldPanel extends JPanel implements ActionListener {
                     currCell.setHasSpider(true);
                 }
                 System.out.println();
-
                 repaint();
 
+
+            }else if(o=="turn"){
+                char spiderDirection =  ds.getSpiderDirection();
+                System.out.println("thurn?" + spiderDirection);
             }
+
+
         }
     }
 

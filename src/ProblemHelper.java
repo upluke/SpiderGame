@@ -49,6 +49,7 @@ public class ProblemHelper {
                 // initialize spider's position and direction in DataSource
                 if(hasSpider){
                     ds.setSpiderCurrPosition(i);
+                    ds.setSpiderDirection(spiderDirection);
                 }
                 Cell cell = new Cell(hasDiamond,hasSpider, color,spiderDirection, id);
 

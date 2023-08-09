@@ -7,7 +7,9 @@ public class DataSource {
     private LinkedList<Cell> cells;
     private int spiderCurrPosition;
 
-    private LinkedList<String> operations = new LinkedList<>(Arrays.asList("move", "move","turn", "paintBlue"));
+    private char spiderDirection;
+
+    private LinkedList<String> operations = new LinkedList<>(Arrays.asList("move", "move","move","turn", "paintBlue"));
     private DataSource(){
 
         cells = new LinkedList<>();
@@ -34,11 +36,20 @@ public class DataSource {
     }
 
     public int getSpiderCurrPosition(){
-        return spiderCurrPosition;
+        return this.spiderCurrPosition;
     }
 
     public void setSpiderCurrPosition(int position){
         this.spiderCurrPosition=position;
+    }
+
+
+    public  char getSpiderDirection(){
+        return this.spiderDirection;
+    }
+
+    public void setSpiderDirection(char direction){
+        this.spiderDirection = direction;
     }
 
     public void setOperations(){
