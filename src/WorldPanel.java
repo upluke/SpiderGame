@@ -3,6 +3,7 @@ import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
 import java.util.LinkedList;
 
 
@@ -105,7 +106,16 @@ public class WorldPanel extends JPanel implements ActionListener {
 
             }else if(o=="turn"){
                 char spiderDirection =  ds.getSpiderDirection();
-                System.out.println("thurn?" + spiderDirection);
+                System.out.println("thurn1" + spiderDirection);
+                HashMap<Character, Character> directionLoopUpHashMap= new HashMap<>(){{
+                    put('n', 'e');
+                    put('e', 's');
+                    put('s', 'w');
+                    put('w', 'n');
+                }};
+
+                ds.setSpiderDirection(directionLoopUpHashMap.get(spiderDirection));
+                System.out.println("thurn2" + ds.getSpiderDirection());
             }
 
 

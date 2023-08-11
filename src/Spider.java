@@ -7,7 +7,7 @@ public class Spider {
     private int x;
     private int y;
 
-    private String direction;
+    private char direction;
 
     public Spider(){}
 
@@ -28,13 +28,13 @@ public class Spider {
     }
 
 
-    public String getDirection(){
-        return this.direction;
-    }
+//    public char getDirection(){
+//        return this.direction;
+//    }
 
-    public void setDirection(String direction){
-        this.direction= direction;
-    }
+//    public void setDirection(char direction){
+//        this.direction= direction;
+//    }
 
     public void move(){
 
