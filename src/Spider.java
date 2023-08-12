@@ -39,9 +39,9 @@ public class Spider {
     public void move(){
 
     }
-    public void paintCell(){
-
-    }
+//    public void paintCell( String color){
+//          // need to be removed if not using at the end
+//    }
 
     public void draw(Graphics g){
         // TODO: change spider's UI according to the directions

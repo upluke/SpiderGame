@@ -1,22 +1,28 @@
 import java.awt.*;
+import java.util.HashMap;
 
 public class Cell {
     private boolean hasDiamond;
     private boolean hasSpider;
     private int id;
-    private Color color;
+    private Color diamondColor;
     private char spiderDirection;
     private Spider spider;
 
+    private boolean hasPainted;
+    private String paintedColor;
     private int x;
     private int y;
 
-    public Cell (boolean diamond, boolean hasSpider, Color color, char spiderDirection, int id){
+    public Cell (boolean diamond, boolean hasSpider, Color diamondColor, char spiderDirection, boolean hasPainted, String paintedColor, int id){
         this.hasDiamond = diamond;
         this.hasSpider = hasSpider;
-        this.color = color;
+        this.diamondColor = diamondColor;
         this.spiderDirection = hasSpider ? spiderDirection : ' ';
+        this.hasPainted = hasPainted;
+        this.paintedColor = hasPainted? paintedColor: " ";
         this.id=id;
+
     }
 
 
@@ -33,8 +39,8 @@ public class Cell {
     public void setHasSpider(boolean hasSpider){
         this.hasSpider=hasSpider;
     }
-    public Color getColor(){
-        return color;
+    public Color getDiamondColor(){
+        return diamondColor;
     }
 
     public int getId(){
@@ -54,16 +60,29 @@ public class Cell {
         this.spiderDirection = direction;
     }
 
+    public void setHasPainted(Boolean hasPainted){
+        this.hasPainted =hasPainted;
+    }
+
+    public String getPaintedColor(){
+        return this.paintedColor;
+    }
+
+    public void setPaintedColor(String color){
+        this.paintedColor = color;
+    }
+
+
     public void draw(Graphics g){
         spider=new Spider();
 
         g.setColor(Color.WHITE);
         g.drawRect(x, y, 80, 80);
         g.setColor(Color.BLACK);
-        g.fillRect(x, y, 80, 80);
+        g.fillRect(x, y, 79, 79);
 
         if(hasDiamond){
-            g.setColor(color);
+            g.setColor(diamondColor);
             g.fillRect(x+30, y+30, 20, 20);
         }
         if(hasSpider){
@@ -71,6 +90,19 @@ public class Cell {
             spider.setY(y);
             spider.draw(g);
         }
+        if(hasPainted){
+            if(!paintedColor.equals("none")){
+                HashMap<String, Color> colorMap = new HashMap<>(){{
+                    put("blue", Color.BLUE);
+                    put("red", Color.RED);
+                    put("green", Color.GREEN);
+                }};
+
+                g.setColor(colorMap.get(this.paintedColor));
+                g.drawRect(x, y, 50, 50);
+            }
+        }
+
 
     }
 

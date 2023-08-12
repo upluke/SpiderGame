@@ -41,7 +41,7 @@ public class ProblemHelper {
                 String currCellData = gridDataArr[i];
 
                 id = i+1;
-                Color color =colorMap.getOrDefault(currCellData.charAt(1), Color.BLACK);
+                Color diamondColor =colorMap.getOrDefault(currCellData.charAt(1), Color.BLACK);
                 boolean hasDiamond=currCellData.contains("r")|| currCellData.contains("b")|| currCellData.contains("g");
                 boolean hasSpider=currCellData.contains("n")|| currCellData.contains("s") || currCellData.contains("w")|| currCellData.contains("e");
                 char spiderDirection=spiderDirectionMap.getOrDefault(currCellData.charAt(1), 'n');
@@ -51,7 +51,7 @@ public class ProblemHelper {
                     ds.setSpiderCurrPosition(i);
                     ds.setSpiderDirection(spiderDirection);
                 }
-                Cell cell = new Cell(hasDiamond,hasSpider, color,spiderDirection, id);
+                Cell cell = new Cell(hasDiamond,hasSpider, diamondColor,spiderDirection, false, "none", id);
 
                 problem.add(cell);
 

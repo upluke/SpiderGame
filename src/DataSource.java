@@ -11,7 +11,6 @@ public class DataSource {
 
     private LinkedList<String> operations = new LinkedList<>(Arrays.asList("move", "move","move","turn", "paintBlue"));
     private DataSource(){
-
         cells = new LinkedList<>();
 
     }

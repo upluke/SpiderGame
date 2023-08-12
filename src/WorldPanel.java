@@ -55,10 +55,11 @@ public class WorldPanel extends JPanel implements ActionListener {
             int leftBoundary =(spiderCurrPosition/5) *(int) Math.sqrt(cells.size()); // leftBoundary <= position
             int rightBoundary = leftBoundary+5; // rightBoundary > position
 
+            Cell currCell = cells.get(spiderCurrPosition);
+
             // TODO: 1. set and test n s  2. modulize main conditional function 3. handle other operations
             if(o=="move") {
                 System.out.println("in in ");
-                Cell currCell = cells.get(spiderCurrPosition);
                 currCell.setHasSpider(false);
                 char spiderDirection = currCell.getSpiderDirection();
                 System.out.println(spiderDirection + " - " + spiderCurrPosition);
@@ -106,7 +107,6 @@ public class WorldPanel extends JPanel implements ActionListener {
 
             }else if(o=="turn"){
                 char spiderDirection =  ds.getSpiderDirection();
-                System.out.println("thurn1" + spiderDirection);
                 HashMap<Character, Character> directionLoopUpHashMap= new HashMap<>(){{
                     put('n', 'e');
                     put('e', 's');
@@ -115,7 +115,10 @@ public class WorldPanel extends JPanel implements ActionListener {
                 }};
 
                 ds.setSpiderDirection(directionLoopUpHashMap.get(spiderDirection));
-                System.out.println("thurn2" + ds.getSpiderDirection());
+            }else if(o=="paintBlue"){
+                currCell.setHasPainted(true);
+                currCell.setPaintedColor("blue");
+                // TODO: 1. adjust painted square position 2. update corresponding cell data
             }
 
 
