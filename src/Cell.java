@@ -93,13 +93,14 @@ public class Cell {
         if(hasPainted){
             if(!paintedColor.equals("none")){
                 HashMap<String, Color> colorMap = new HashMap<>(){{
-                    put("blue", Color.BLUE);
-                    put("red", Color.RED);
-                    put("green", Color.GREEN);
+                    put("blue", new Color(0, 0, 255, 128));
+                    put("red", new Color(255, 0, 0, 128));
+                    put("green", new Color(0, 255, 0, 128));
                 }};
 
                 g.setColor(colorMap.get(this.paintedColor));
-                g.drawRect(x, y, 50, 50);
+                g.fillRect(x, y, 79, 79);
+
             }
         }
 
