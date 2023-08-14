@@ -57,7 +57,7 @@ public class WorldPanel extends JPanel implements ActionListener {
 
             Cell currCell = cells.get(spiderCurrPosition);
 
-            // TODO: 1. set and test n s  2. modulize main conditional function 3. handle other operations
+            // TODO: 1. debug "move" doesn't move to turning direction s  2. modulize main conditional function
             if(o=="move") {
                 System.out.println("in in ");
                 currCell.setHasSpider(false);
@@ -118,7 +118,6 @@ public class WorldPanel extends JPanel implements ActionListener {
             }else if(o=="paintBlue"){
                 currCell.setHasPainted(true);
                 currCell.setPaintedColor("blue");
-                // TODO: 1. adjust painted square position 2. update corresponding cell data
             }else if(o=="paintRed"){
                 currCell.setHasPainted(true);
                 currCell.setPaintedColor("red");
@@ -131,12 +130,28 @@ public class WorldPanel extends JPanel implements ActionListener {
         }
     }
 
+    public boolean checkIfStageIsComplete(){
+       LinkedList<Cell> cells= ds.getCells();
+       int counter = 0;
+       for(Cell cell: cells){
+           if(cell.hasDiamond() && cell.getHasPainted()){
+               counter+=1;
+           }
+       }
+       return counter==3? true: false;
+    }
+
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getActionCommand().equals("Play")){
             System.out.println("Clicked play");
             updateCellsWithOperationsData();
+            if(checkIfStageIsComplete()){
+                System.out.println("yes completed");
+            }else{
+                System.out.println("not complete");
+            }
         }else{
             System.out.println("Clicked reset");
             ds.resetCells();

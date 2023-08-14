@@ -60,6 +60,10 @@ public class Cell {
         this.spiderDirection = direction;
     }
 
+    public boolean getHasPainted(){
+        return this.hasPainted;
+    }
+
     public void setHasPainted(Boolean hasPainted){
         this.hasPainted =hasPainted;
     }
