@@ -57,9 +57,8 @@ public class WorldPanel extends JPanel implements ActionListener {
 
             Cell currCell = cells.get(spiderCurrPosition);
 
-            // TODO: 1. debug "move" doesn't move to turning direction s  2. modulize main conditional function
+            // TODO: 1. modulize main conditional function
             if(o=="move") {
-                System.out.println("in in ");
                 currCell.setHasSpider(false);
                 char spiderDirection = currCell.getSpiderDirection();
                 System.out.println(spiderDirection + " - " + spiderCurrPosition);
@@ -98,7 +97,6 @@ public class WorldPanel extends JPanel implements ActionListener {
 
 
                 }else{
-                    System.out.println("here?");
                     currCell.setHasSpider(true);
                 }
                 System.out.println();
@@ -114,7 +112,10 @@ public class WorldPanel extends JPanel implements ActionListener {
                     put('w', 'n');
                 }};
 
-                ds.setSpiderDirection(directionLoopUpHashMap.get(spiderDirection));
+                char spiderUpdatedDirection = directionLoopUpHashMap.get(spiderDirection);
+                ds.setSpiderDirection(spiderUpdatedDirection);
+                currCell.setSpiderDirection(spiderUpdatedDirection);
+
             }else if(o=="paintBlue"){
                 currCell.setHasPainted(true);
                 currCell.setPaintedColor("blue");
