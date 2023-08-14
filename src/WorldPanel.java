@@ -119,6 +119,12 @@ public class WorldPanel extends JPanel implements ActionListener {
                 currCell.setHasPainted(true);
                 currCell.setPaintedColor("blue");
                 // TODO: 1. adjust painted square position 2. update corresponding cell data
+            }else if(o=="paintRed"){
+                currCell.setHasPainted(true);
+                currCell.setPaintedColor("red");
+            }else if(o=="paintGreen"){
+                currCell.setHasPainted(true);
+                currCell.setPaintedColor("green");
             }
 
 
