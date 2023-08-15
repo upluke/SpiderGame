@@ -139,7 +139,7 @@ public class WorldPanel extends JPanel implements ActionListener {
                counter+=1;
            }
        }
-       return counter==3? true: false;
+       return counter==3;
     }
 
 
@@ -148,10 +148,11 @@ public class WorldPanel extends JPanel implements ActionListener {
         if(e.getActionCommand().equals("Play")){
             System.out.println("Clicked play");
             updateCellsWithOperationsData();
-            if(checkIfStageIsComplete()){
-                System.out.println("yes completed");
-            }else{
-                System.out.println("not complete");
+
+            if (checkIfStageIsComplete()) {
+                SwingUtilities.invokeLater(() -> {
+                    JOptionPane.showMessageDialog(this, "This stage is completed! Good job!", "Alert", JOptionPane.INFORMATION_MESSAGE);
+                });
             }
         }else{
             System.out.println("Clicked reset");
