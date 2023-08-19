@@ -8,6 +8,7 @@ public class WorkAreaPanel extends JPanel implements MouseListener, MouseMotionL
     Ball ball =new Ball(53, 163, 30, 30);;
     TrashCan trashCan = new TrashCan(40,670,30,50);;
 
+    Block moveBlock = new Block(600, 163, 60, 60);
     int preX, preY;
 
     boolean isClickedOut =false;
@@ -30,6 +31,7 @@ public class WorkAreaPanel extends JPanel implements MouseListener, MouseMotionL
 
         ball.draw(g);
         trashCan.draw(g);
+        moveBlock.draw(g);
     }
 
     @Override
