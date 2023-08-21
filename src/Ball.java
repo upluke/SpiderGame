@@ -14,7 +14,6 @@ public class Ball {
     public int getY(){return bounds.y;}
 
     public void move(int x, int y){
-        System.out.println("move: " + x + " " + y);
         bounds.x = x;
         bounds.y = y;
     }

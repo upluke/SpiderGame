@@ -5,7 +5,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
 public class WorkAreaPanel extends JPanel implements MouseListener, MouseMotionListener {
-    Ball ball =new Ball(53, 163, 30, 30);;
+//    Ball ball =new Ball(53, 163, 30, 30);;
     TrashCan trashCan = new TrashCan(40,670,30,50);;
 
     Block moveBlock = new Block(600, 163, 60, 60, Color.YELLOW);
@@ -32,7 +32,7 @@ public class WorkAreaPanel extends JPanel implements MouseListener, MouseMotionL
         g.setColor(Color.LIGHT_GRAY);
         g.fillRect(sectionWidth*2, 0 , sectionWidth, getHeight());
 
-        ball.draw(g);
+//        ball.draw(g);
         trashCan.draw(g);
         moveBlock.draw(g);
         turnBlock.draw(g);
@@ -41,12 +41,12 @@ public class WorkAreaPanel extends JPanel implements MouseListener, MouseMotionL
 
     @Override
     public void mousePressed(MouseEvent e) {
-        preX = (int)(ball.getX() - e.getX());
-        preY = (int)(ball.getY() - e.getY());
-        System.out.println(preX + " " + preY + "*****" +ball.getX() + " " + ball.getY());
-        if(ball.contains(e.getX(), e.getY())){
-            System.out.println("in");
-            ball.move(preX+ e.getX(), preY+ e.getY());
+        preX = (int)(moveBlock.getX() - e.getX());
+        preY = (int)(moveBlock.getY() - e.getY());
+        System.out.println(preX + " " + preY + "***move block**" +moveBlock.getX() + " " + moveBlock.getY());
+        if(moveBlock.contains(e.getX(), e.getY())){
+            System.out.println("in block");
+            moveBlock.move(preX+ e.getX(), preY+ e.getY());
             repaint();
         }else{
             isClickedOut=true;
@@ -56,14 +56,13 @@ public class WorkAreaPanel extends JPanel implements MouseListener, MouseMotionL
     @Override
     public void mouseDragged(MouseEvent e) {
         if(!isClickedOut){
-
-            ball.move(preX+e.getX(), preY+e.getY());
+            moveBlock.move(preX+e.getX(), preY+e.getY());
             repaint();
         }
 
-        if(trashCan.isBlockOnTrashCan(ball)){
-
-        }
+//        if(trashCan.isBlockOnTrashCan(ball)){
+//
+//        }
     }
 
     @Override
