@@ -3,10 +3,13 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.util.LinkedList;
 
 public class WorkAreaPanel extends JPanel implements MouseListener, MouseMotionListener {
-//    Ball ball =new Ball(53, 163, 30, 30);;
-    TrashCan trashCan = new TrashCan(40,670,30,50);;
+
+
+//    Ball ball =new Ball(53, 163, 30, 30);
+    TrashCan trashCan = new TrashCan(40,670,30,50);
 
     Block moveBlock = new Block(600, 163, 60, 60, Color.YELLOW);
     Block turnBlock = new Block(600, 263, 60, 60, Color.ORANGE);
@@ -41,12 +44,20 @@ public class WorkAreaPanel extends JPanel implements MouseListener, MouseMotionL
 
     @Override
     public void mousePressed(MouseEvent e) {
+
         preX = (int)(moveBlock.getX() - e.getX());
         preY = (int)(moveBlock.getY() - e.getY());
         System.out.println(preX + " " + preY + "***move block**" +moveBlock.getX() + " " + moveBlock.getY());
         if(moveBlock.contains(e.getX(), e.getY())){
             System.out.println("in block");
             moveBlock.move(preX+ e.getX(), preY+ e.getY());
+            DataSource ds = DataSource.getInstance();
+            ds.setTestingOperations("move");
+            LinkedList<String> testingOperations = ds.getTestingOperations();
+            System.out.println(testingOperations.size());
+//            for(String to: testingOperations){
+//                System.out.println("^^^^^^^ "+to);
+//            }
             repaint();
         }else{
             isClickedOut=true;

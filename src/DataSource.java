@@ -10,6 +10,8 @@ public class DataSource {
     private char spiderDirection;
 
     private LinkedList<String> operations = new LinkedList<>(Arrays.asList("move","paintGreen", "move","paintRed","turn","move","move","paintBlue"));
+
+    private LinkedList<String> testingOperations = new LinkedList<>();
     private DataSource(){
         cells = new LinkedList<>();
 
@@ -58,5 +60,17 @@ public class DataSource {
     public LinkedList<String> getOperations(){
         return operations;
     }
+
+    // following is for testing ---------------------
+
+
+    public void setTestingOperations(String newOperation) {
+        this.testingOperations.add(newOperation);
+    }
+
+    public LinkedList<String> getTestingOperations(){
+        return this.testingOperations;
+    }
+
 
 }
