@@ -1,3 +1,4 @@
+import java.awt.*;
 import java.util.Arrays;
 import java.util.LinkedList;
 
@@ -12,6 +13,7 @@ public class DataSource {
     private LinkedList<String> operations = new LinkedList<>(Arrays.asList("move","paintGreen", "move","paintRed","turn","move","move","paintBlue"));
 
     private LinkedList<String> testingOperations = new LinkedList<>();
+    private LinkedList<Block> testingBlocks = new LinkedList<>();
     private DataSource(){
         cells = new LinkedList<>();
 
@@ -70,6 +72,14 @@ public class DataSource {
 
     public LinkedList<String> getTestingOperations(){
         return this.testingOperations;
+    }
+
+    public void setTestingBlocks(int x, int y, int w, int h, Color color, String blockValue){
+        this.testingBlocks.add(new Block(x, y, w, h, color, blockValue));
+    }
+
+    public LinkedList<Block> getTestingBlocks(){
+        return this.testingBlocks;
     }
 
 
